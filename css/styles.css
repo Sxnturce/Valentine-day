@@ -1,0 +1,203 @@
+*,
+::before,
+::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	overflow: hidden;
+}
+
+.container-loader {
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	background-color: rgb(29, 29, 29);
+	opacity: 1;
+	visibility: visible;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 2.5em;
+	z-index: 99;
+	transition: all 1.7s ease-in-out;
+	.loader {
+		width: 80px;
+		height: 80px;
+		border-radius: 50%;
+		border: 8px solid #d1914b;
+		box-sizing: border-box;
+		--c: no-repeat radial-gradient(farthest-side, #d64123 94%, #0000);
+		--b: no-repeat radial-gradient(farthest-side, #000 94%, #0000);
+		background: var(--c) 11px 15px, var(--b) 6px 15px, var(--c) 35px 23px,
+			var(--b) 29px 15px, var(--c) 11px 46px, var(--b) 11px 34px,
+			var(--c) 36px 0px, var(--b) 50px 31px, var(--c) 47px 43px,
+			var(--b) 31px 48px, #f6d353;
+		background-size: 15px 15px, 6px 6px;
+		animation: l4 3s infinite;
+	}
+	.loader-text {
+		width: fit-content;
+		font-weight: bold;
+		font-family: sans-serif;
+		font-size: 30px;
+		padding-bottom: 8px;
+		background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+		animation: l2 2s linear infinite;
+		color: white;
+	}
+}
+
+.loader-text:before {
+	content: "Cargando...";
+}
+@keyframes l2 {
+	to {
+		background-size: 100% 3px;
+	}
+}
+
+@keyframes l4 {
+	0% {
+		-webkit-mask: conic-gradient(#0000 0, #000 0);
+	}
+	16.67% {
+		-webkit-mask: conic-gradient(#0000 60deg, #000 0);
+	}
+	33.33% {
+		-webkit-mask: conic-gradient(#0000 120deg, #000 0);
+	}
+	50% {
+		-webkit-mask: conic-gradient(#0000 180deg, #000 0);
+	}
+	66.67% {
+		-webkit-mask: conic-gradient(#0000 240deg, #000 0);
+	}
+	83.33% {
+		-webkit-mask: conic-gradient(#0000 300deg, #000 0);
+	}
+	100% {
+		-webkit-mask: conic-gradient(#0000 360deg, #000 0);
+	}
+}
+.container-content {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 1.3em;
+	& img {
+		width: 90%;
+		max-width: 550px;
+		filter: drop-shadow(0 0 15px #ff77ff);
+	}
+}
+
+@keyframes neon-glow {
+	0% {
+		box-shadow: 0 0 10px #ff77ff, 0 0 20px #ff77ff, 0 0 30px #ff77ff,
+			0 0 40px #ff77ff, inset 0 0 10px #ff77ff;
+	}
+	100% {
+		box-shadow: 0 0 15px #ff77ff, 0 0 25px #ff77ff, 0 0 35px #ff77ff,
+			0 0 45px #ff77ff, inset 0 0 10px #ff77ff;
+	}
+}
+
+.audio {
+	position: absolute;
+	z-index: 2;
+	right: 5%;
+	top: 10%;
+}
+
+.button {
+	position: relative;
+	margin: 0;
+	padding: 0.8em 1em;
+	outline: none;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	border: none;
+	text-transform: uppercase;
+	background-color: #333;
+	border-radius: 10px;
+	color: #fff;
+	font-weight: 300;
+	font-size: 18px;
+	font-family: inherit;
+	z-index: 0;
+	overflow: hidden;
+	transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+.button:hover {
+	animation: sh0 0.5s ease-in-out both;
+}
+
+@keyframes sh0 {
+	0% {
+		transform: rotate(0deg) translate3d(0, 0, 0);
+	}
+
+	25% {
+		transform: rotate(7deg) translate3d(0, 0, 0);
+	}
+
+	50% {
+		transform: rotate(-7deg) translate3d(0, 0, 0);
+	}
+
+	75% {
+		transform: rotate(1deg) translate3d(0, 0, 0);
+	}
+
+	100% {
+		transform: rotate(0deg) translate3d(0, 0, 0);
+	}
+}
+
+.button:hover span {
+	animation: storm 0.7s ease-in-out both;
+	animation-delay: 0.06s;
+}
+
+.button::before,
+.button::after {
+	content: "";
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background: #fff;
+	opacity: 0;
+	transition: transform 0.15s cubic-bezier(0.02, 0.01, 0.47, 1),
+		opacity 0.15s cubic-bezier(0.02, 0.01, 0.47, 1);
+	z-index: -1;
+	transform: translate(100%, -25%) translate3d(0, 0, 0);
+}
+
+.button:hover::before,
+.button:hover::after {
+	opacity: 0.15;
+	transition: transform 0.2s cubic-bezier(0.02, 0.01, 0.47, 1),
+		opacity 0.2s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+.button:hover::before {
+	transform: translate3d(50%, 0, 0) scale(0.9);
+}
+
+.button:hover::after {
+	transform: translate(50%, 0) scale(1.1);
+}
