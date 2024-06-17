@@ -52,7 +52,7 @@ body {
 }
 
 .loader-text:before {
-	content: "Cargando...";
+	content: "Loanding...";
 }
 @keyframes l2 {
 	to {
